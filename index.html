@@ -8,12 +8,12 @@
   <meta name="description" content="Namokar Mantra (णमोकार मंत्र) with Jain Panchang – Sunrise, Sunset and Day in Hindi (Delhi).">
   <meta name="keywords" content="Jain Mantra, Namokar Mantra, Jain Panchang, सूर्योदय, सूर्यास्त">
 
-  <!-- SunCalc (absolute path, local file) -->
-  <script src="/js/suncalc.js"></script>
+  <!-- ✅ SunCalc – use FULL URL (avoids path/domain issues) -->
+  <script src="https://www.jainmantra.com/js/suncalc.js"></script>
 
-  <link rel="icon" href="/jain.png" type="image/png">
+  <link rel="icon" href="https://www.jainmantra.com/jain.png" type="image/png">
 
-  <!-- Google Analytics -->
+  <!-- ✅ Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJY5LF8XNP"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -33,7 +33,7 @@
       font-size: 22px;
     }
 
-    h1, h2, h3 { margin: 12px 0; }
+    h1, h2 { margin: 12px 0; }
 
     .pblack {
       color: black;
@@ -102,9 +102,9 @@
   मंगलाणं च सव्वेसिं पढमं हवइ मंगलं।।
 </p>
 
-<img src="/jainmantra.jpg" alt="Jain Mantra">
+<img src="https://www.jainmantra.com/jainmantra.jpg" alt="Jain Mantra">
 
-<!-- Jain Panchang (Delhi only) -->
+<!-- Jain Panchang – Delhi only -->
 <div class="card">
   <h2 style="margin-top:0;color:#8B0000;">
     आज का जैन पंचांग (सूर्योदय / सूर्यास्त) – दिल्ली
@@ -116,6 +116,7 @@
 </div>
 
 <script>
+  // Delhi coordinates
   const DELHI = { lat: 28.6139, lon: 77.2090 };
   const hindiDays = ["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"];
 
@@ -132,10 +133,8 @@
   }
 
   function renderDelhi() {
-    err.textContent = "";
-
     if (!window.SunCalc || typeof SunCalc.getTimes !== "function") {
-      err.textContent = "SunCalc लोड नहीं हुआ। कृपया /js/suncalc.js फ़ाइल और path चेक करें।";
+      err.textContent = "SunCalc execute नहीं हुआ। कृपया ब्राउज़र cache clear करें।";
       return;
     }
 
@@ -152,7 +151,7 @@
     msg.textContent = "यह समय दिल्ली के स्थानीय सूर्योदय और सूर्यास्त पर आधारित है।";
   }
 
-  // Render immediately on load
+  // Render immediately
   renderDelhi();
 </script>
 
