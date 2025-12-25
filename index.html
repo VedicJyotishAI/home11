@@ -5,15 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Jain Mantra – Namokar Mantra</title>
-  <meta name="description" content="Namokar Mantra (णमोकार मंत्र) with Jain Panchang – Sunrise, Sunset and Day in Hindi.">
+  <meta name="description" content="Namokar Mantra (णमोकार मंत्र) with Jain Panchang – Sunrise, Sunset and Day in Hindi (Delhi).">
   <meta name="keywords" content="Jain Mantra, Namokar Mantra, Jain Panchang, सूर्योदय, सूर्यास्त">
 
-  <!-- ✅ SunCalc (local, absolute path) -->
+  <!-- SunCalc (absolute path, local file) -->
   <script src="/js/suncalc.js"></script>
 
   <link rel="icon" href="/jain.png" type="image/png">
 
-  <!-- ✅ Google Analytics -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJY5LF8XNP"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -50,22 +50,6 @@
       border: 1px solid #ddd;
       border-radius: 12px;
       color: black;
-    }
-
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin: 12px 0;
-    }
-
-    select, button {
-      padding: 10px 14px;
-      font-size: 14px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      cursor: pointer;
     }
 
     .grid {
@@ -120,25 +104,11 @@
 
 <img src="/jainmantra.jpg" alt="Jain Mantra">
 
-<!-- Jain Panchang Section -->
+<!-- Jain Panchang (Delhi only) -->
 <div class="card">
   <h2 style="margin-top:0;color:#8B0000;">
-    आज का जैन पंचांग (सूर्योदय / सूर्यास्त)
+    आज का जैन पंचांग (सूर्योदय / सूर्यास्त) – दिल्ली
   </h2>
-
-  <div class="row">
-    <select id="city">
-      <option value="custom">— शहर चुनें —</option>
-      <option value="delhi">दिल्ली</option>
-      <option value="mumbai">मुंबई</option>
-      <option value="ahmedabad">अहमदाबाद</option>
-      <option value="jaipur">जयपुर</option>
-      <option value="pune">पुणे</option>
-      <option value="indore">इंदौर</option>
-    </select>
-
-    <button id="gpsBtn">GPS लोकेशन</button>
-  </div>
 
   <div id="output" class="grid"></div>
   <div id="msg" class="muted"></div>
@@ -146,19 +116,9 @@
 </div>
 
 <script>
+  const DELHI = { lat: 28.6139, lon: 77.2090 };
   const hindiDays = ["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"];
 
-  const cities = {
-    delhi: { name: "दिल्ली", lat: 28.6139, lon: 77.2090 },
-    mumbai: { name: "मुंबई", lat: 19.0760, lon: 72.8777 },
-    ahmedabad: { name: "अहमदाबाद", lat: 23.0225, lon: 72.5714 },
-    jaipur: { name: "जयपुर", lat: 26.9124, lon: 75.7873 },
-    pune: { name: "पुणे", lat: 18.5204, lon: 73.8567 },
-    indore: { name: "इंदौर", lat: 22.7196, lon: 75.8577 }
-  };
-
-  const citySelect = document.getElementById("city");
-  const gpsBtn = document.getElementById("gpsBtn");
   const output = document.getElementById("output");
   const msg = document.getElementById("msg");
   const err = document.getElementById("err");
@@ -171,41 +131,29 @@
     return d.toLocaleDateString("hi-IN", { day: "numeric", month: "long", year: "numeric" });
   }
 
-  function render(place, lat, lon) {
+  function renderDelhi() {
     err.textContent = "";
+
+    if (!window.SunCalc || typeof SunCalc.getTimes !== "function") {
+      err.textContent = "SunCalc लोड नहीं हुआ। कृपया /js/suncalc.js फ़ाइल और path चेक करें।";
+      return;
+    }
+
     const today = new Date();
-    const times = SunCalc.getTimes(today, lat, lon);
+    const times = SunCalc.getTimes(today, DELHI.lat, DELHI.lon);
 
     output.innerHTML = `
       <div class="item"><div class="k">तारीख</div><div class="v">${formatDate(today)}</div></div>
-      <div class="item"><div class="k">स्थान</div><div class="v">${place}</div></div>
       <div class="item"><div class="k">वार</div><div class="v">${hindiDays[today.getDay()]}</div></div>
       <div class="item"><div class="k">सूर्योदय</div><div class="v">${formatTime(times.sunrise)}</div></div>
       <div class="item"><div class="k">सूर्यास्त</div><div class="v">${formatTime(times.sunset)}</div></div>
     `;
 
-    msg.textContent = "यह समय स्थानीय सूर्योदय और सूर्यास्त पर आधारित है।";
+    msg.textContent = "यह समय दिल्ली के स्थानीय सूर्योदय और सूर्यास्त पर आधारित है।";
   }
 
-  citySelect.addEventListener("change", () => {
-    const c = cities[citySelect.value];
-    if (c) render(c.name, c.lat, c.lon);
-  });
-
-  gpsBtn.addEventListener("click", () => {
-    if (!navigator.geolocation) {
-      err.textContent = "GPS उपलब्ध नहीं है।";
-      return;
-    }
-    navigator.geolocation.getCurrentPosition(
-      pos => render("आपकी लोकेशन", pos.coords.latitude, pos.coords.longitude),
-      () => err.textContent = "GPS अनुमति नहीं मिली।"
-    );
-  });
-
-  // Default city
-  citySelect.value = "delhi";
-  render(cities.delhi.name, cities.delhi.lat, cities.delhi.lon);
+  // Render immediately on load
+  renderDelhi();
 </script>
 
 <p style="font-size:14px;color:black;">© 2025 JainMantra.com</p>
