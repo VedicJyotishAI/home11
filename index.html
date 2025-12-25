@@ -5,11 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Jain Mantra – Namokar Mantra</title>
-  <meta name="description" content="Namokar Mantra (णमोकार मंत्र) with Jain Panchang – Sunrise, Sunset and Day in Hindi (Delhi)." />
+  <meta name="description" content="Namokar Mantra (णमोकार मंत्र) with Jain Panchang – Delhi sunrise/sunset and day in Hindi." />
+  <meta name="keywords" content="Jain Mantra, Namokar Mantra, Jain Panchang, सूर्योदय, सूर्यास्त, दिल्ली" />
 
   <link rel="icon" href="https://www.jainmantra.com/jain.png" type="image/png" />
 
-  <!-- SunCalc (CDN: correct MIME, works in Chrome) -->
+  <!-- SunCalc (CDN: reliable in Chrome) -->
   <script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
 
   <!-- Google Analytics -->
@@ -23,7 +24,7 @@
 
   <style>
     body {
-      background: #fff;
+      background: #ffffff;
       color: #8B0000;
       font-family: Arial, sans-serif;
       text-align: center;
@@ -31,8 +32,15 @@
       padding: 20px;
       font-size: 22px;
     }
+
     h1, h2 { margin: 12px 0; }
-    .pblack { color: #000; font-size: 14px; margin-top: -20px; }
+
+    .pblack {
+      color: #000;
+      font-size: 14px;
+      margin-top: -20px;
+    }
+
     img { max-width: 100%; height: auto; }
 
     .card {
@@ -42,25 +50,35 @@
       border: 1px solid #ddd;
       border-radius: 12px;
       color: #000;
+      background: #fffdf7;
     }
+
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-top: 15px;
     }
+
     .item {
-      background: #fafafa;
+      background: #ffffff;
       border: 1px solid #eee;
       border-radius: 10px;
       padding: 10px;
     }
-    .k { font-size: 12px; color: #555; }
-    .v { font-size: 16px; margin-top: 4px; }
+
+    .k { font-size: 12px; color: #555; letter-spacing: 0.2px; }
+    .v { font-size: 18px; margin-top: 4px; font-weight: 700; }
+
     .muted { font-size: 12px; color: #666; margin-top: 10px; }
     .error { font-size: 13px; color: #b00020; margin-top: 10px; }
 
-    @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+    /* Traditional-style small line below time */
+    .sub { font-size: 12px; color: #666; margin-top: 4px; font-weight: 400; }
+
+    @media (max-width: 520px) {
+      .grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 
@@ -89,8 +107,10 @@
 
   <img src="https://www.jainmantra.com/jainmantra.jpg" alt="Jain Mantra" />
 
+  <!-- Jain Panchang – Traditional style (Delhi) -->
   <div class="card">
-    <h2 style="margin-top:0;color:#8B0000;">आज का जैन पंचांग (सूर्योदय / सूर्यास्त) – दिल्ली</h2>
+    <h2 style="margin-top:0;color:#8B0000;">आज का जैन पंचांग – दिल्ली</h2>
+
     <div id="output" class="grid"></div>
     <div id="msg" class="muted"></div>
     <div id="err" class="error"></div>
@@ -99,17 +119,19 @@
   <script>
     const DELHI = { lat: 28.6139, lon: 77.2090 };
     const TZ = "Asia/Kolkata";
+
     const hindiDays = ["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"];
 
     const output = document.getElementById("output");
     const msg = document.getElementById("msg");
     const err = document.getElementById("err");
 
-    function formatTimeIST(d) {
+    // 24-hour IST formatting (no AM/PM, no पू/अ)
+    function formatTime24IST(d) {
       return d.toLocaleTimeString("hi-IN", {
         hour: "2-digit",
         minute: "2-digit",
-        hour12: true,
+        hour12: false,
         timeZone: TZ
       });
     }
@@ -127,21 +149,45 @@
       err.textContent = "";
 
       if (!window.SunCalc || typeof SunCalc.getTimes !== "function") {
-        err.textContent = "SunCalc लोड नहीं हुआ (Chrome में अक्सर MIME/type issue होता है)। यह version CDN से fix करता है।";
+        err.textContent = "SunCalc लोड नहीं हुआ।";
         return;
       }
 
+      // Use current moment, but show date/time in IST consistently
       const now = new Date();
       const times = SunCalc.getTimes(now, DELHI.lat, DELHI.lon);
 
+      const sunrise24 = formatTime24IST(times.sunrise);
+      const sunset24  = formatTime24IST(times.sunset);
+
+      // Traditional style: add सुबह/शाम labels explicitly
       output.innerHTML = `
-        <div class="item"><div class="k">तारीख</div><div class="v">${formatDateIST(now)}</div></div>
-        <div class="item"><div class="k">वार</div><div class="v">${hindiDays[now.getDay()]}</div></div>
-        <div class="item"><div class="k">सूर्योदय</div><div class="v">${formatTimeIST(times.sunrise)}</div></div>
-        <div class="item"><div class="k">सूर्यास्त</div><div class="v">${formatTimeIST(times.sunset)}</div></div>
+        <div class="item">
+          <div class="k">तारीख</div>
+          <div class="v">${formatDateIST(now)}</div>
+          <div class="sub">भारत समय (IST)</div>
+        </div>
+
+        <div class="item">
+          <div class="k">वार</div>
+          <div class="v">${hindiDays[now.getDay()]}</div>
+          <div class="sub">दिल्ली</div>
+        </div>
+
+        <div class="item">
+          <div class="k">सूर्योदय</div>
+          <div class="v">${sunrise24}</div>
+          <div class="sub">सुबह</div>
+        </div>
+
+        <div class="item">
+          <div class="k">सूर्यास्त</div>
+          <div class="v">${sunset24}</div>
+          <div class="sub">शाम</div>
+        </div>
       `;
 
-      msg.textContent = "समय IST (Asia/Kolkata) के अनुसार है।";
+      msg.textContent = "यह समय दिल्ली के स्थानीय सूर्योदय/सूर्यास्त पर आधारित है। (24-घंटे प्रारूप)";
     }
 
     renderDelhi();
