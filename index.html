@@ -1,65 +1,223 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <title>Jain Mantra - Namokar Mantra</title>
-    <meta name="description" content="Discover the powerful Jain Mantra Namokar Mantra (णमोकार-महामंत्र). Learn about its significance and benefits.">
-    <meta name="keywords" content="Jain Mantra, Namokar Mantra, णमोकार-महामंत्र, Jainism, Jain Prayers">
-    <style>
-        body {
-            background-color: #FFFFFF;
-            color: #8B0000;
-            font-size: 24px;
-            font-family: "Arial", sans-serif;
-            text-align: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jain Mantra - Namokar Mantra</title>
+  <meta name="description" content="Discover the powerful Jain Mantra Namokar Mantra (णमोकार-महामंत्र). Learn about its significance and benefits.">
+  <meta name="keywords" content="Jain Mantra, Namokar Mantra, णमोकार-महामंत्र, Jainism, Jain Prayers">
 
-        .pblack {
-            color: black;
-            font-size: 14px;
-            margin-top: -30px;
-        }
+  <!-- Local SunCalc -->
+  <script src="js/suncalc.js"></script>
 
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
-    <link rel="icon" href="jain.png" type="image/png">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJY5LF8XNP"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
+  <link rel="icon" href="jain.png" type="image/png">
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
+  <style>
+    body {
+      background-color: #FFFFFF;
+      color: #8B0000;
+      font-size: 24px;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
 
-        gtag('js', new Date());
-        gtag('config', 'G-GJY5LF8XNP');
-    </script>
+    .pblack {
+      color: black;
+      font-size: 14px;
+      margin-top: -30px;
+    }
+
+    img { max-width: 100%; height: auto; }
+
+    .card { max-width: 720px; padding: 18px; border: 1px solid #ddd; border-radius: 12px; margin: 0 auto; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: end; margin: 12px 0; justify-content: center; }
+    label { font-size: 13px; display: block; margin-bottom: 6px; color: #000; }
+    select, button { padding: 10px 12px; border-radius: 10px; border: 1px solid #ccc; font-size: 14px; }
+    button { cursor: pointer; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; margin-top: 12px; }
+    .item { padding: 10px 12px; background: #fafafa; border: 1px solid #eee; border-radius: 10px; color: #000; }
+    .k { font-size: 12px; color: #555; }
+    .v { font-size: 16px; margin-top: 4px; }
+    .muted { color: #666; font-size: 12px; margin-top: 10px; }
+    .error { color: #b00020; font-size: 13px; margin-top: 10px; }
+    @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GJY5LF8XNP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-GJY5LF8XNP');
+  </script>
 </head>
+
 <body>
-<h1>Jain Mantra <br> Namokar Mantra (णमोकार मंत्र)</h1>
-<h2>णमो अरिहंताणं</h2>
-<p class="pblack">(मैं अरिहंतों को नमन करता हूँ।)</p>
-<h2>णमो सिद्धाणं </h2>
-<p class="pblack">(मैं सिद्धों को नमन करता हूँ।)</p>
-<h2>णमो आयरियाणं</h2>
-<p class="pblack">(मैं आचार्यों को नमन करता हूँ।)</p>
-<h2>णमो उवज्झायाणं</h2>
-<p class="pblack">(मैं उपाध्यायों को नमन करता हूँ।)</p>
-<h2>णमो लोए सव्वसाहूणं</h2>
-<p class="pblack">(मैं समस्त साधुओं को नमन करता हूँ।)</p>
-<p>
+  <h1>Jain Mantra <br> Namokar Mantra (णमोकार मंत्र)</h1>
+
+  <h2>णमो अरिहंताणं</h2>
+  <p class="pblack">(मैं अरिहंतों को नमन करता हूँ।)</p>
+
+  <h2>णमो सिद्धाणं</h2>
+  <p class="pblack">(मैं सिद्धों को नमन करता हूँ।)</p>
+
+  <h2>णमो आयरियाणं</h2>
+  <p class="pblack">(मैं आचार्यों को नमन करता हूँ।)</p>
+
+  <h2>णमो उवज्झायाणं</h2>
+  <p class="pblack">(मैं उपाध्यायों को नमन करता हूँ।)</p>
+
+  <h2>णमो लोए सव्वसाहूणं</h2>
+  <p class="pblack">(मैं समस्त साधुओं को नमन करता हूँ।)</p>
+
+  <p>
     एसो पंच णमोक्कारो सव्व पावप्पणासणो।<br>
     मंगलाणं च सव्वेसिं पढमं हवइ मंगलं।।<br>
-</p>
-<p style="font-size: 14px;color: black;">यह पृष्ठ मेरे पिता की स्मृति में जैन धर्म को समर्पित है। <br>जैन धर्म अहिंसा,
-    सत्य और तपस्या पर जोर देता है।</p>
-<img src="jainmantra.jpg" alt="Jain Mantra" title="Jain Mantra">
-<p>हम प्राचीन जैन मंत्रों पर शोध कर रहे हैं। <br>🙏जय जिनेंद्र।🙏</p>
-<p><a href="https://www.youtube.com/@jainmantra?sub_confirmation=1">Subscribe to our YouTube channel for more Jain Mantra content</a></p>
-<p>© 2025 JainMantra.COM</p>
+  </p>
+
+  <p style="font-size: 14px; color: black;">
+    यह पृष्ठ मेरे पिता की स्मृति में जैन धर्म को समर्पित है। <br>
+    जैन धर्म अहिंसा, सत्य और तपस्या पर जोर देता है।
+  </p>
+
+  <img src="jainmantra.jpg" alt="Jain Mantra" title="Jain Mantra">
+
+  <p>हम प्राचीन जैन मंत्रों पर शोध कर रहे हैं। <br>जय जिनेंद्र।</p>
+  <p><a href="https://www.youtube.com/@jainmantra?sub_confirmation=1">Subscribe to our YouTube channel for more Jain Mantra content</a></p>
+
+  <h3>आज का जैन पंचांग (सूर्योदय/सूर्यास्त)</h3>
+
+  <div class="card">
+    <h2 style="margin-top:0;color:#8B0000;">आज का जैन पंचांग (सूर्योदय / सूर्यास्त)</h2>
+
+    <div class="row">
+      <div>
+        <label for="city">शहर चुनें</label>
+        <select id="city">
+          <option value="custom">— चुनें —</option>
+          <option value="delhi">दिल्ली</option>
+          <option value="mumbai">मुंबई</option>
+          <option value="ahmedabad">अहमदाबाद</option>
+          <option value="jaipur">जयपुर</option>
+          <option value="pune">पुणे</option>
+          <option value="surat">सूरत</option>
+          <option value="kolkata">कोलकाता</option>
+          <option value="chennai">चेन्नई</option>
+          <option value="bengaluru">बेंगलुरु</option>
+          <option value="hyderabad">हैदराबाद</option>
+          <option value="indore">इंदौर</option>
+        </select>
+      </div>
+
+      <div><button id="gpsBtn" type="button">मेरी लोकेशन (GPS) से</button></div>
+      <div><button id="refreshBtn" type="button">आज के लिए अपडेट</button></div>
+    </div>
+
+    <div id="output" class="grid"></div>
+    <div id="msg" class="muted"></div>
+    <div id="err" class="error"></div>
+  </div>
+
+  <script>
+    const hindiDays = ["रविवार","सोमवार","मंगलवार","बुधवार","गुरुवार","शुक्रवार","शनिवार"];
+
+    const cities = {
+      delhi: { name: "दिल्ली", lat: 28.6139, lon: 77.2090 },
+      mumbai: { name: "मुंबई", lat: 19.0760, lon: 72.8777 },
+      ahmedabad: { name: "अहमदाबाद", lat: 23.0225, lon: 72.5714 },
+      jaipur: { name: "जयपुर", lat: 26.9124, lon: 75.7873 },
+      pune: { name: "पुणे", lat: 18.5204, lon: 73.8567 },
+      surat: { name: "सूरत", lat: 21.1702, lon: 72.8311 },
+      kolkata: { name: "कोलकाता", lat: 22.5726, lon: 88.3639 },
+      chennai: { name: "चेन्नई", lat: 13.0827, lon: 80.2707 },
+      bengaluru: { name: "बेंगलुरु", lat: 12.9716, lon: 77.5946 },
+      hyderabad: { name: "हैदराबाद", lat: 17.3850, lon: 78.4867 },
+      indore: { name: "इंदौर", lat: 22.7196, lon: 75.8577 }
+    };
+
+    const citySelect = document.getElementById("city");
+    const gpsBtn = document.getElementById("gpsBtn");
+    const refreshBtn = document.getElementById("refreshBtn");
+    const output = document.getElementById("output");
+    const msg = document.getElementById("msg");
+    const err = document.getElementById("err");
+
+    function formatTime(d) {
+      return d.toLocaleTimeString("hi-IN", { hour: "2-digit", minute: "2-digit" });
+    }
+    function formatDate(d) {
+      return d.toLocaleDateString("hi-IN", { year: "numeric", month: "long", day: "numeric" });
+    }
+    function setError(text) { err.textContent = text || ""; }
+    function setMessage(text) { msg.textContent = text || ""; }
+
+    function renderResult(placeName, lat, lon) {
+      setError("");
+      const today = new Date();
+
+      if (!window.SunCalc || typeof SunCalc.getTimes !== "function") {
+        setError("SunCalc लोड नहीं हुआ। कृपया js/suncalc.js का path चेक करें।");
+        return;
+      }
+
+      const times = SunCalc.getTimes(today, lat, lon);
+      const sunrise = (times.sunrise instanceof Date && !isNaN(times.sunrise)) ? formatTime(times.sunrise) : "उपलब्ध नहीं";
+      const sunset  = (times.sunset  instanceof Date && !isNaN(times.sunset))  ? formatTime(times.sunset)  : "उपलब्ध नहीं";
+      const dayHindi = hindiDays[today.getDay()];
+
+      output.innerHTML = `
+        <div class="item"><div class="k">तारीख</div><div class="v">${formatDate(today)}</div></div>
+        <div class="item"><div class="k">स्थान</div><div class="v">${placeName}</div></div>
+        <div class="item"><div class="k">वार</div><div class="v">${dayHindi}</div></div>
+        <div class="item"><div class="k">सूर्योदय</div><div class="v">${sunrise}</div></div>
+        <div class="item"><div class="k">सूर्यास्त</div><div class="v">${sunset}</div></div>
+        <div class="item"><div class="k">निर्देशांक</div><div class="v">${lat.toFixed(4)}, ${lon.toFixed(4)}</div></div>
+      `;
+      setMessage("यह गणना आपके चुने हुए स्थान के लिए आज के सूर्योदय/सूर्यास्त के आधार पर की गई है।");
+    }
+
+    function useSelectedCity() {
+      const key = citySelect.value;
+      if (!key || key === "custom") { setError("कृपया कोई शहर चुनें या GPS बटन दबाएँ।"); return; }
+      const c = cities[key];
+      renderResult(c.name, c.lat, c.lon);
+    }
+
+    function useGPS() {
+      setError("");
+      setMessage("लोकेशन प्राप्त की जा रही है...");
+
+      if (!navigator.geolocation) {
+        setMessage("");
+        setError("यह ब्राउज़र GPS लोकेशन सपोर्ट नहीं करता। कृपया शहर चुनें।");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          setMessage("");
+          renderResult("आपकी लोकेशन (GPS)", pos.coords.latitude, pos.coords.longitude);
+        },
+        () => {
+          setMessage("");
+          setError("GPS लोकेशन नहीं मिल सकी। कृपया परमिशन दें या शहर चुनें।");
+        },
+        { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }
+      );
+    }
+
+    citySelect.addEventListener("change", () => { if (citySelect.value !== "custom") useSelectedCity(); });
+    gpsBtn.addEventListener("click", useGPS);
+    refreshBtn.addEventListener("click", () => {
+      if (citySelect.value && citySelect.value !== "custom") useSelectedCity();
+      else setError("कृपया कोई शहर चुनें या GPS बटन दबाएँ।");
+    });
+
+    citySelect.value = "delhi";
+    useSelectedCity();
+  </script>
+
+  <p style="color:black;font-size:14px;">© 2025 JainMantra.COM</p>
 </body>
 </html>
